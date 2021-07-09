@@ -50,12 +50,11 @@ class CustomNumberPuzzleControl extends NumberPuzzleControl {
 		Button[] buttons = game.getButtons();
 
 		int clickCellId = 0;
-		for (int i = 0; i <= 15; i++) { // We traverse the buttons array to find at which index is the clicked button
+		for (int i = 0; i <= 15; i++) {
 			if (buttons[i].getLabel() == buttonClicked.getLabel())
 				clickCellId = i;
 		}
 
-		// Now we calculate the row and column for empty and clicked cell
 		int clickRow = clickCellId / 4;
 		int clickCol = clickCellId % 4;
 		int emptyRow = emptyCellId / 4;
@@ -63,18 +62,13 @@ class CustomNumberPuzzleControl extends NumberPuzzleControl {
 		int rowDiff = Math.abs(clickRow - emptyRow);
 		int colDiff = Math.abs(clickCol - emptyCol);
 
-		// If the clicked cell is not adjacent or is on diagonal to empty cell then do
-		// nothing and return older emptycell value
 		if (rowDiff > 1 || colDiff > 1 || (rowDiff > 0 && colDiff > 0))
 			return emptyCellId;
 
-		// Else if
 		swapButton(buttons[emptyCellId], buttonClicked);
 		System.out.println();
 		emptyCellId = clickCellId;
 		return clickCellId;
-
-		// Your logic here
 
 	}
 
